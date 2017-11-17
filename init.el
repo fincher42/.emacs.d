@@ -12,13 +12,13 @@
 ;M-x insert-kbd-macro <RET> macroname <RET> //inserts into current file, e.g., .emacs
 ; http://ergoemacs.org/emacs/keyboard_shortcuts_examples.html
 ; https://github.com/fincher42/Emacs.git
-								;    Last Updated:<time datetime='2017-11-16' pubdate> November 16, 2017</time>.
-; TODO:
-;; replace (concat ) with find-file for ispell-dict
+								;    Last Updated:<time datetime='2017-11-17' pubdate> November 17, 2017</time>.
+;; TODO:
 ;; separate into smaller files
 ;; move to .emacs-d
 ;; move to init.el
 ;; learn to autoload log.txt with html and flyspell modes
+;; remove unneeded functions
 ;; ===================== Critical Startup Tasks =====================
 
 (cond
@@ -50,7 +50,8 @@
    (global-set-key [C-M-o] 'switch-to-other-buffer)
     ))
  )
-(add-to-list 'load-path (concat emacs-dir "/lisp"))
+(setq emacs-lisp-dir (concat emacs-dir "/lisp"))
+(add-to-list 'load-path emacs-lisp-dir)
 (setq  home-dir-fincher "~")
 (setq bookmark-default-file (concat emacs-dir "/.emacs.bmk"))
 
@@ -85,6 +86,9 @@
 (load "remotes.el")
 (load "my-menus")
 (load "flyspell-1.7q")
+(load "define-keys.el")
+(load "my-colors.el")
+(load "html-utils.el")
 ;(load "marketplace-log-mode")
 ;(require 'marketplace-log-mode)
 ;(load "zoo-log-mode")
@@ -94,125 +98,6 @@
 (require 'json-mode) ;https://github.com/joshwnj/json-mode;
  ;to use:  select all (c-x h) m-x  json-reformat-region
 
-;; ===================== The Mouse Key Family =====================
-(setq mouse-drag-copy-region 't)
-;(global-set-key [S-down-mouse-3]  '(message "down mouse3") )
-(global-set-key [S-down-mouse-1]  'kill-a-line )
-(global-set-key [C-down-1]  'killaword)
-(global-set-key [mouse-2]  'delete-char)
-(global-set-key [mouse-3]  'yank)
-(global-set-key [C-down-mouse-1]  'kill-word )
-(define-key global-map [C-S-down-mouse-3]  'line-to-top)
-(setq mouse-wheel-scroll-amount '(1))
-(setq mouse-wheel-progressive-speed nil) ;; or 1 to make it accelerate
-;; 
-(global-set-key [S-mouse-3]  '(lambda ()(interactive) (transpose-lines 1)(previous-line 2)(beginning-of-line)))
-;;(global-set-key [S-mouse-3]  '(lambda ()(interactive)(beginning-of-line) (set-mark (point) )(transpose-lines 1)(goto-char (mark)) ))
-
-;; ===================== The Right Keypad Family =====================
-(global-set-key [kp-0] 'switch-to-other-buffer)
-(global-set-key [insert] 'switch-to-other-buffer)
-(global-set-key [C-kp-insert] 'switch-to-other-buffer)
-(global-set-key [home] 'beginning-of-line)
-(global-set-key [C-kp-home] 'beginning-of-buffer)
-(global-set-key [M-kp-home] 'find-today-in-log-toappend)
-(global-set-key [M-kp-7] 'find-today-in-log)
-(global-set-key [C-M-kp-home] '(lambda () (interactive) (find-today-in-log)(forward-line -4)(insert-date-stamp)))
-(global-set-key [C-M-kp-7] '(lambda () (interactive) (find-today-in-log)(forward-line -4)(insert-date-stamp)))
-
-(global-set-key [C-kp-next] 'end-of-buffer) ;; page down
-(global-set-key [C-kp-prior] 'beginning-of-buffer) ;; page up
-(global-set-key [C-home] 'beginning-of-buffer)
-(global-set-key [s-home] 'find-today-in-log-toappend)
-(global-set-key [end] 'end-of-line)
-(global-set-key [C-end] 'end-of-buffer)
-(global-set-key [C-kp-end] 'end-of-buffer)
-(global-set-key [M-kp-end] 'end-of-buffer)
-(global-set-key [C-M-kp-7] 'find-today-in-log)
-
-;; ===================== The F Key Family =====================
-(global-set-key [f1]  'goto-line)
-(global-set-key [(shift f1)]  'bookmark-jump)
-;; DONT RESET F2 ON NT
-(global-set-key [f3]  'query-replace)
-(global-set-key [(shift f3)]  'query-replace-regexp)
-(global-set-key [f4]  '(lambda () (interactive) (end-of-line)(eval-last-sexp )))
-(global-set-key [(shift f4)]  'downcase-word)
-(global-set-key [f5]  'start-kbd-macro)
-(global-set-key [f6]  'end-kbd-macro)
-(global-set-key [f7]  'call-last-kbd-macro)
-(global-set-key [(shift f7)]  'bookmark-jump)
-(global-set-key [f8]  'auto-fill-mode)
-(global-set-key [f9]  'fill-paragraph)
-(global-set-key [(shift f9)]  'upcase-region)
-(global-set-key [f10]  'tagify-word)
-(global-set-key [(shift f5)]  'bookmark-set)
-(global-set-key [f11]  'insert-buffer-name)
-(global-set-key [(shift control f9)]  'format-branch-name)
-(global-set-key [(shift control f1)]  'set-mark-command)
-(global-set-key [(shift control f2)]  'pre)
-(global-set-key [(shift control f11)]  'insert-buffer-name-and-lineno)
-(global-set-key [f12]  '(lambda () (interactive) (font-lock-fontify-buffer)(message "font locking")))
-;(global-set-key [(shift f12)]  'my-c++-indent-defun)
-
-;; ===================== The Meta (Esc) Key Family =====================
-(define-key global-map "\M-p" '(lambda () (interactive)(beginning-of-line)(insert "<p>")(end-of-line)(insert "</p>")(forward-line 1)(beginning-of-line)     ))
-(define-key global-map "\C-p" '(lambda () (interactive)(beginning-of-line)(insert "<p>")(end-of-line)(insert "</p>")(forward-line 1)(beginning-of-line)     ))
-(define-key esc-map "$" 'ispell-word)
-;(define-key global-map "\M-\C-m" 'vm)
-(define-key global-map "\M-1" 'delete-other-windows)
-(define-key global-map "\M-2" 'split-window-vertically)
-(define-key global-map "\M-3" 'switch-to-third-buffer)
-(define-key global-map "\M-4" 'ispell-buffer)
-(define-key global-map "\M-5" 'split-window-horizontally)
-(define-key global-map "\M-b" 'bury-buffer)
-(define-key global-map "\M-d" 'insert-date-stamp)
-(define-key global-map "\M-D" 'insert-time-stamp)
-(define-key global-map "\M-e" 'editemacs)
-(define-key global-map "\M-f" 'find-file)
-(define-key global-map "\M-k" 'kill-buffer-now)
-(define-key global-map "\M-g" 'goto-line)
-(define-key global-map "\M-i" 'insert-file)
-(define-key global-map "\M-j" 'jump-back)
-(define-key global-map "\M-l" 'editlog)
-(define-key global-map "\M-L" '(lambda () (interactive) (editlog) (goto-char (point-min))))
-(define-key global-map "\C-L" '(lambda () (interactive) (beginning-of-line)(insert "<li>")(end-of-line)(insert "</li>")(forward-char -5) ))
-(define-key global-map "\M-\C-p" '(lambda () (interactive) (insert "<pre></pre>")(forward-char -6)))
-(define-key global-map "\M-r" '(lambda () (interactive) (revert-buffer t t)))
-(define-key global-map "\M-s" 'shell)
-(define-key global-map "\M-T" 'insert-time-stamp)
-(define-key global-map "\M-\C-d" 'insert-date-stamp-news)
-(define-key global-map "\M-u" 'undo)
-;; ===================== The Ctl Key Family =====================
-(define-key global-map (kbd "C-+")  '(lambda () (interactive) (beginning-of-line)(search-forward "-")(forward-char -1)(delete-char 1)(insert "+")(forward-char -1)(forward-line 1)))
-
-(define-key global-map (kbd "C-~")  '(lambda () (interactive) (beginning-of-line)(delete-char 1)(insert "~")(forward-char -1)(forward-line 1)))
-(global-set-key "\C-x\C-c" nil) ;; comment out the easy exit
-(define-key global-map "\C-o" 'find-file)
-(define-key global-map "\C-\M-Q"  'reload-emacs-file)
-(define-key global-map "\C-w" 'kill-buffer-now)
-(define-key global-map "\C-R"  'replace-string)
-(define-key global-map "\C-n"  'next-line)
-(define-key global-map "\C-_"  'search-forward)		; really the ^/
-(define-key global-map "\C-f"  'isearch-forward)
-(define-key global-map "\C-v"  'clipboard-yank)
-(define-key global-map "\C-\M-S"  'search-for-word)
-(define-key global-map "\C-^"  'enlarge-window2)
-(define-key global-map "\C-xi" 'insert-buffer)
-(define-key global-map "\C-x\C-x" 'delete-region)
-(define-key global-map "\C-x\C-w" 'eval-last-sexp)
-(define-key global-map "\C-k"  'kill-a-line)
-(global-set-key(kbd "S-C-k") 'kill-rectangle)
-(define-key global-map "\C-z"  'undo)
-(define-key global-map "\C-s"  'save-buffer)
-(define-key global-map "\C-\M-A" '(lambda () (interactive) (copy-region-as-kill (point-min)(point-max)) (message "file copied to paste-buffer")))
-(define-key global-map "\C-a" '(lambda () (interactive) (beginning-of-line)))
-(define-key global-map "\C-D" 'dl)
-;(define-key global-map "\C-{" 'brace4it)
-(define-key global-map "\C-\M-t"  'insert-time-stamp)
-(define-key global-map "\C-c\C-c"  '(lambda () (interactive)(copy-region-as-kill (point-min)(point-max))))
-(setq fill-prefix "   ")
-(define-key global-map "\C-c>"  '(lambda () (interactive)(indent-region)))
 
 ;////////////////////////// Key Board Macros ///////////////////////
 ;; converts "term" //definition to <dt>term</dt><dd>def</dd>
@@ -256,7 +141,7 @@
 
 ;////////////////////////////////////////////////////////////
 ;; Add the Last Updated: timestamp.
-;    Last Updated:<time datetime='2017-11-16' pubdate> November 16, 2017</time>.
+;    Last Updated:<time datetime='2017-11-17' pubdate> November 17, 2017</time>.
 (defvar writestamp-date-format " %B %e, %Y" "*Format for displaying time")
 (add-hook 'write-file-hooks 'update-writestamps)
 (defun update-writestamps ()
@@ -319,7 +204,6 @@ nil)
 (interactive)
 (recenter 0))
 
-
 (defun kill-to-end ()
   "Kills text from point to end of buffer."
   (interactive)
@@ -329,7 +213,6 @@ nil)
   "Kills text from point to beginning of buffer."
   (interactive)
   (kill-region (point) (point-min)))
-
 
 (defun delete-leading-whitespace ()
   (interactive)
@@ -392,34 +275,6 @@ nil)
   )
 )
 
-
-(defun comment-region (top bottom &optional macro)
-"comments the hightlighted region by prefacing lines with correct characters"
-  (interactive "r")
-  (save-excursion
-    (let ((end-marker (progn
-			(goto-char bottom)
-			(beginning-of-line)
-			(point-marker)))
-	  next-line-marker)
-      (goto-char top)
-      (if (not (bolp))
-	  (forward-line 1))
-      (setq next-line-marker (point-marker))
-      (while (< next-line-marker end-marker)
-	(goto-char next-line-marker)
-	(save-excursion
-	  (forward-line 1)
-	  (set-marker next-line-marker (point)))
-	(save-excursion
-        ;; command goes here
-        (beginning-of-line)(insert comment-start)
-         ))
-      (set-marker end-marker nil)
-      (set-marker next-line-marker nil))
-  )
-)
-
 (defun indent-according-to-mode-region (top bottom &optional macro)
 "name says it all"
   (interactive "r")
@@ -454,65 +309,6 @@ nil)
 ;; needs to be fixed
 (switch-to-other-buffer)
   )
-;;color::
-(defun set-colors-light()
-  (interactive)
-(setq colors-dark nil)
-(set-face-background 'default "white")
-(set-face-foreground 'default "black")
-)
-(defun set-colors-dark()
-  (interactive)
-(setq colors-dark 't)
-(set-face-background 'default "black")
-(set-face-foreground 'default "white") 
-)
-(defun toggle-colors()
-  (interactive)
-  (if colors-dark
-      (set-colors-light)
-      (set-colors-dark)
-  )
-)
-(set-colors-light)
-;(set-colors-dark)
-
-
-(blink-cursor-mode 0) ;;turn off blinking
-(set-face-attribute 'default nil :height 150)
-(defun my-set-colors ()
-  (interactive)
-  "sets colors and fonts for font-locking"
-;  (let
-     ;; ((Default-Font (face-font (get-face 'default))))
-    (setq-default font-lock-auto-fontify t)
-    (setq-default font-lock-use-fonts t)
-    (setq-default font-lock-use-colors t)
-    (setq-default font-lock-use-maximal-decoration t)
-    (setq-default font-lock-mode-enable-list t)
-    (setq-default font-lock-mode-disable-list nil)
-
-    (require 'font-lock)
-    (set-face-foreground 'font-lock-builtin-face        "Red")
-    (set-face-foreground 'font-lock-comment-face        "#934")
-    (set-face-foreground 'font-lock-constant-face       "Red")
-    (set-face-foreground 'font-lock-function-name-face  "Blue")
-    (set-face-foreground 'font-lock-keyword-face	"#3f3")
-    (set-face-foreground 'font-lock-string-face         "#88f")
-    (set-face-foreground 'font-lock-type-face           "#373")
-    (set-face-foreground 'font-lock-warning-face        "Red")
-    (set-face-foreground font-lock-variable-name-face   "#0b7")
-    (set-face-underline-p 'font-lock-string-face nil)
-    (set-cursor-color "red")
-  )
-(global-font-lock-mode t)
-(setq font-lock-maximum-decoration t)
-(setq font-lock-maximum-size nil)
-(cond ((fboundp 'global-font-lock-mode)
-       ;; Turn on font-lock in all modes that support it
-       (global-font-lock-mode t)
-       ;; Maximum colors
-       (setq font-lock-maximum-decoration t)))
 
 (progn (message (concat "at .45"))(sit-for debug-wait))
 
@@ -535,14 +331,6 @@ nil)
   (next-line 1)
   (setq i (1+ i))
   )
-)
-
-(defun my-c++-indent-defun ()
-"puts message in message line when we start and finish"
-(interactive)
-(message "starting to reformat function...")
-(c++-indent-defun)
-(message "finished.")
 )
 
 (defun my-call-process (program infile &rest program-args)
@@ -571,7 +359,6 @@ nil)
 
 
 (defun search-for-word()
-;; by mitch fincher
 "searches for next occurance of the word at the point"
  (interactive )
 (setq p0 (point))
@@ -594,13 +381,11 @@ nil)
 )
 
 (defun jump-back ()
-;; by mitch fincher."
 "Returns to cursors previous position"
   (interactive "*" )
 (pop-mark)
 (goto-char (mark t))
 )
-
 
 (defun insert-heading-info()
 "inserts the file name and date at the top of a file."
@@ -610,7 +395,6 @@ nil)
 (insert "                                           " buffer-file-name)
 (insert "\n\n")
 )
-
 
 (defun insert-file-name()
 "inserts the file name and date at the top of a file."
@@ -1036,9 +820,6 @@ buffers-menu-sort-function nil
 (modify-syntax-entry 45 "w") ; specifies "-" char 45 to be a word
 (display-time)
 
-;(add-hook 'diary-hook 'appt-make-list)
-(message "at .85")(sit-for debug-wait)
-
 (defun copy-filename-to-kill-buffer ()
 (interactive)
 (kill-new (buffer-file-name))
@@ -1063,7 +844,6 @@ It changes all / to \ and all \ to / -mdf"
 )
 ;;  aa\bb\cc\dd
 
-(setq mouse-scroll-delay .25)
 
 (setq
 search-highlight t
@@ -1129,41 +909,7 @@ suggest-key-bindings nil
 )
 (message "at .95")(sit-for debug-wait)
 
- (defun insert-list ()
-" inserts html list into selected region"
-  (interactive "*")
-  (narrow-to-region  (point) (mark))
-    (goto-char (point-min))
-    (insert "<ol>\n     <li>")
-
-     (while (<  (+ 2 (point)) (point-max))
-         (forward-line)(insert "</li><li>")
-     )
-    (goto-char (point-max))
-  (insert "</li></ol>")
- (widen)
-(message "list complete.")
-)
-
-(defun simple-convert-html-angles ()
-" replaces all & < and > to &amp;, &lt; and &;gt; in the region"
-  (interactive "*")
-  (narrow-to-region  (point) (mark))
-    (goto-char (point-min))    (replace-string "&" "&amp;")
-    (goto-char (point-min))    (replace-string "<" "&lt;")
-    (goto-char (point-min))    (replace-string ">" "&gt;")
- (widen)
-)
-(defun simple-unconvert-html-angles ()
-" replaces all &amp;, &lt; and &gt; to & < and > in the region"
-  (interactive "*")
-  (narrow-to-region  (point) (mark))
-    (goto-char (point-min))    (replace-string "&amp;" "&" )
-    (goto-char (point-min))    (replace-string "&lt;" "<" )
-    (goto-char (point-min))    (replace-string "&gt;" ">" )
- (widen)
-)
-
+ 
 (my-set-colors)
 (editlog)
 (recentf-mode 1)
