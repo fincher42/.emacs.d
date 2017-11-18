@@ -12,7 +12,7 @@
 ;M-x insert-kbd-macro <RET> macroname <RET> //inserts into current file, e.g., .emacs
 ; http://ergoemacs.org/emacs/keyboard_shortcuts_examples.html
 ; https://github.com/fincher42/Emacs.git
-								;    Last Updated:<time datetime='2017-11-17' pubdate> November 17, 2017</time>.
+								;    Last Updated:<time datetime='2017-11-18' pubdate> November 18, 2017</time>.
 ;; TODO:
 ;; separate into smaller files
 ;; move to .emacs-d
@@ -31,12 +31,15 @@
        (set-frame-size (selected-frame) 60 32)
     )
     (add-to-list 'exec-path "C:/Program Files (x86)/Aspell/bin/")
+    (defun editlog () (interactive) (find-file (concat home-dir-fincher "/log.txt")))
+
     ))
  ((string-equal system-type "darwin") ; Mac OS X
   (progn
     (message "Mac OS X")
-   (setq emacs-dir "~/Dropbox/Emacs")
+   (setq emacs-dir "~/.emacs.d")
    (add-to-list 'exec-path "/usr/local/bin")
+(defun editlog () (interactive) (find-file (concat home-dir-fincher "/Dropbox/plog.html")))
 
   (defun set-frame-windows() (interactive)
     (set-frame-position (selected-frame) 10 0)
@@ -109,9 +112,9 @@ truncate-lines nil
 ;(require 'marketplace-log-mode)
 ;(load "zoo-log-mode")
 (require 'sgml-mode)
-(require 'json-snatcher) ;https://github.com/Sterlingg/json-snatcher
-(require 'json-reformat) ;https://github.com/gongo/json-reformat
-(require 'json-mode) ;https://github.com/joshwnj/json-mode;
+;(require 'json-snatcher) ;https://github.com/Sterlingg/json-snatcher
+;(require 'json-reformat) ;https://github.com/gongo/json-reformat
+;(require 'json-mode) ;https://github.com/joshwnj/json-mode;
  ;to use:  select all (c-x h) m-x  json-reformat-region
 
 
@@ -131,7 +134,7 @@ truncate-lines nil
 (defun reload-emacs-file () (interactive) (save-buffer)(load-file (concat emacs-dir "/init.el") ))
 (defun find-today-in-log ()(interactive)(editlog)(beginning-of-buffer)(search-forward "<h3>")(forward-line 3))
 (defun find-today-in-log-toappend ()(interactive)(editlog)(beginning-of-buffer)(search-forward "<h3>")(search-forward "<h3>")(forward-line -2))
-(defun editlog () (interactive) (find-file (concat home-dir-fincher "/log.txt")))
+;(defun editlog () (interactive) (find-file (concat home-dir-fincher "/log.txt")))
 (defun mark-and-copy-whole-buffer ()(interactive)(copy-region-as-kill (point-min)(point-max)))
 (defun  switch-to-other-buffer()"switch to the second buffer" (interactive)(switch-to-buffer nil) )
 (defun  switch-to-third-buffer()"switch to the second buffer" (interactive)(switch-to-buffer (car (list-buffers))) )
