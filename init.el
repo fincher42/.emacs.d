@@ -80,6 +80,21 @@
 (add-hook 'comint-output-filter-functions 'shell-strip-ctrl-m nil t)
 (put 'eval-expression 'disabled nil)
 
+(recentf-mode 1)
+(setq
+delete-by-moving-to-trash t
+recentf-max-saved-items 50
+quick-redisplay 1
+auto-save-default nil
+wrap-long-lines t
+backup-before-writing 1
+backup-by-copying-when-linked 1
+completion-auto-help t
+inhibit-startup-message t
+require-final-newline nil
+truncate-partial-width-windows nil
+truncate-lines nil
+)
 
 ;; ===================== Load Extras =====================
 (load "tabbar-master/tabbar.el")
@@ -128,47 +143,20 @@
 (defun editaddr () (interactive) (find-file "~/.pers/addr") )
 (defun kill-a-line () (interactive) "2 kills-lines" (beginning-of-line)(kill-line 1))
 
- (defun sort-words (reverse beg end)
+(defun sort-words (reverse beg end)
       "Sort words in region alphabetically, in REVERSE if negative.
     Prefixed with negative \\[universal-argument], sorts in reverse.
-  
     The variable `sort-fold-case' determines whether alphabetic case
     affects the sort order.
-  
-    See `sort-regexp-fields'."
+      See `sort-regexp-fields'."
       (interactive "*P\nr")
       (sort-regexp-fields reverse "\\w+" "\\&" beg end))
-
-
 
 ;(add-hook 'simple-html-mode-hook 'auto-fill-mode 0)
 ;(add-hook 'simple-html-mode-hook 'syntax-table-stuff)
 ;(add-hook 'simple-html-mode-hook 'font-lock-fontify-buffer)
 ;(add-hook 'c++-mode-hook '(setq wrap-long-lines nil))
-(add-hook 'marketplace-lod-mode-hook 'font-lock-fontify-buffer)
-
-(defun downcase-tag ()(interactive)
-"downcases HTML tags to make them more like xhtml wants. (<HTML> and </HTML> are downcased.  Bad Side Effects to be corrected:  Permanently changes case-fold-search and starts by downcasing the word at the point."
-(setq case-fold-search nil)
-(downcase-word 1)
-(search-forward-regexp "<[/]*[A-Z]")
-(forward-char -1)
-(setq case-fold-search t)
-)
-
-(defun syntax-table-stuff ()
-(interactive)
-(modify-syntax-entry 31 "w")
-(modify-syntax-entry 45 "w")
-)
-
-(defun taber () (interactive)
-  (search-forward-regexp "	[0-2]")
-  (backward-char 1)
-   (message (format " current column is %d " (current-column) ))
-   (if (< (current-column) 18)
-       (insert "	"))
-)
+(add-hook 'marketplace-mode-hook 'font-lock-fontify-buffer)
 
 (defun display-file-info()
 "trival function to show find-file-hooks functionality"
@@ -336,7 +324,6 @@
 (insert "&gt;</span>")
 )
 
-
 (defun search-for-word()
 "searches for next occurance of the word at the point"
  (interactive )
@@ -381,7 +368,6 @@
 (insert buffer-file-name)
 )
 
-
 (defun backup-current-file ()
   "backs up a file with date embedded. e.g., 'init.el' is copied to 'init.el-2010-07-16'"
   (interactive)
@@ -391,7 +377,6 @@
   ))
 
 (message (concat "at .5"))(sit-for debug-wait)
-
 
 (defun my-indent-defun ()
 "calls system indent-rigidly with correct args"
@@ -458,7 +443,6 @@ args do the right thing)"
 (kill-word 1)
 )
 
-
 (defun scroll-updown (event)
   "This allows the user to scroll up and down with the mouse in
 test area.  This should be bound to a mouse click event type.
@@ -493,23 +477,9 @@ by Mitch Fincher, Dec 93"
   )
 )
 
-
-
-
 (defun reload ()
   (interactive)
   (load-file (buffer-file-name)))
-
-(setq
-quick-redisplay 1
-auto-save-default nil
-wrap-long-lines t
-backup-before-writing 1
-backup-by-copying-when-linked 1
-completion-auto-help t
-inhibit-startup-message t
-require-final-newline nil
-)
 
 ;; save backups to c:\windows\temp\fincherm
 (defvar user-temporary-file-directory
@@ -524,9 +494,6 @@ require-final-newline nil
       (concat user-temporary-file-directory ".auto-saves-"))
 (setq auto-save-file-name-transforms
       `((".*" ,user-temporary-file-directory t)))
-
-
-
 
 ;;;  In Fundamental mode, auto fill as well.
 ;
@@ -560,8 +527,6 @@ require-final-newline nil
 		    ))
       (forward-line -1))
     (or (bobp )(forward-line 1))))
-
-(message "at .75")(sit-for debug-wait)
 
 (defun fill-long-comment ()
   (interactive)
@@ -649,8 +614,6 @@ require-final-newline nil
 	("\\.ged$" .  gedcom-mode)
 ))
 
-(setq truncate-partial-width-windows nil)
-(setq truncate-lines nil)
 
 (defun switch-to-existing-buffer (bufname)
   (interactive "BSwitch to buffer: ")
@@ -837,9 +800,6 @@ suggest-key-bindings nil
  
 (my-set-colors)
 (editlog)
-(recentf-mode 1)
-(setq recentf-max-saved-items 50)
-(setq delete-by-moving-to-trash t)
 (message "Let's rock! (Emacs version is %s)" emacs-version )
 
 

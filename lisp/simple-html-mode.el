@@ -4,6 +4,13 @@
 ;; font-lock commands adapted from: Ulrik Dickow <dickow@nbi.dk> 
 ;; (http://www.nbi.dk/~dickow) implementation of font-html.el
 
+;;used in (add-hook 'simple-html-mode-hook 'syntax-table-stuff)
+(defun syntax-table-stuff ()
+(interactive)
+(modify-syntax-entry 31 "w")
+(modify-syntax-entry 45 "w")
+)
+
 (defvar simple-html-font-lock-keywords
   (let ((tword "\\(h1\\|title\\)")          ; Titles, like function defs
 	(bword "\\(b\\|h[2-4]\\|strong\\)") ; Names of tags to boldify
