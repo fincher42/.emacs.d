@@ -112,7 +112,9 @@ truncate-lines nil
 ;(require 'marketplace-log-mode)
 ;(load "zoo-log-mode")
 (require 'sgml-mode)
-;(require 'json-snatcher) ;https://github.com/Sterlingg/json-snatcher
+;(load "json-snatcher-master/json-snatcher.el")
+;(require 'json-snatcher ) ;https://github.com/Sterlingg/json-snatcher 
+;(load "json-reformat-master/json-reformat.el")
 ;(require 'json-reformat) ;https://github.com/gongo/json-reformat
 ;(require 'json-mode) ;https://github.com/joshwnj/json-mode;
  ;to use:  select all (c-x h) m-x  json-reformat-region
