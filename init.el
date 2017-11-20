@@ -12,7 +12,7 @@
 ;M-x insert-kbd-macro <RET> macroname <RET> //inserts into current file, e.g., .emacs
 ; http://ergoemacs.org/emacs/keyboard_shortcuts_examples.html
 ; https://github.com/fincher42/Emacs.git
-								;    Last Updated:<time datetime='2017-11-18' pubdate> November 18, 2017</time>.
+								;    Last Updated:<time datetime='2017-11-20' pubdate> November 20, 2017</time>.
 ;; TODO:
 ;; separate into smaller files
 ;; move to .emacs-d
@@ -25,7 +25,6 @@
  ((string-equal system-type "windows-nt") ; Microsoft Windows
   (progn
     (message "Microsoft Windows")
-    (setq emacs-dir "~/.emacs.d")
     (defun set-frame-windows() (interactive)
        (set-frame-position (selected-frame) 965 0)
        (set-frame-size (selected-frame) 60 32)
@@ -37,7 +36,6 @@
  ((string-equal system-type "darwin") ; Mac OS X
   (progn
     (message "Mac OS X")
-   (setq emacs-dir "~/.emacs.d")
    (add-to-list 'exec-path "/usr/local/bin")
 (defun editlog () (interactive) (find-file (concat home-dir-fincher "/Dropbox/plog.html")))
 
@@ -53,6 +51,7 @@
    (global-set-key [C-M-o] 'switch-to-other-buffer)
     ))
  )
+    (setq emacs-dir "~/.emacs.d")
 (setq emacs-lisp-dir (concat emacs-dir "/lisp"))
 (add-to-list 'load-path emacs-lisp-dir)
 (setq  home-dir-fincher "~")
