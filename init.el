@@ -12,12 +12,9 @@
 ;M-x insert-kbd-macro <RET> macroname <RET> //inserts into current file, e.g., .emacs
 ; http://ergoemacs.org/emacs/keyboard_shortcuts_examples.html
 ; https://github.com/fincher42/Emacs.git
-								;    Last Updated:<time datetime='2017-11-20' pubdate> November 20, 2017</time>.
+								;    Last Updated:<time datetime='2017-12-01' pubdate> December  1, 2017</time>.
 ;; TODO:
 ;; separate into smaller files
-;; move to .emacs-d
-;; move to init.el
-;; learn to autoload log.txt with html and flyspell modes
 ;; remove unneeded functions
 ;; ===================== Critical Startup Tasks =====================
 
@@ -51,7 +48,7 @@
    (global-set-key [C-M-o] 'switch-to-other-buffer)
     ))
  )
-    (setq emacs-dir "~/.emacs.d")
+(setq emacs-dir "~/.emacs.d")
 (setq emacs-lisp-dir (concat emacs-dir "/lisp"))
 (add-to-list 'load-path emacs-lisp-dir)
 (setq  home-dir-fincher "~")

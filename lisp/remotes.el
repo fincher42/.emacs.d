@@ -1,0 +1,15 @@
+    (progn   
+        	 (require 'tramp)
+        	 (setq tramp-default-method "plink")
+        	 (setq tramp-default-user "mfincher")
+        	 (setq tramp-default-host "fincher.org")
+        	 (setq tramp-verbose 10)
+        	 (setq tramp-debug-buffer t)
+                 (setq password-cache-expiry nil)
+                 ;(require 'sgml-mode)
+    )
+(tabbar-mode)(tabbar-mode);;need to do this twice to toggle it to life
+(define-key global-map "\M-n" '(lambda () (interactive) 
+(find-file (concat "/ssh:mfincher@fincher.org:~/news/news0" (getQuarter) ".shtml"))
+))
+(define-key global-map "\M-c" '(lambda () (interactive) (find-file "/mfincher@fincher.org:/home/mfincher/www/CoinStacking/index.shtml")))

@@ -1,0 +1,155 @@
+;;;; Emacs Bookmark Format Version 1 ;;;;
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("FavoriteLinks.shtml"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/Misc/FavoriteLinks.shtml")
+ (front-context-string . "<!--#include vir")
+ (rear-context-string)
+ (position . 1))
+("threads"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/tips/Languages/csharpThreads.shtml")
+ (front-context-string . "<!--#include vir")
+ (rear-context-string)
+ (position . 1))
+("csharpThreads.shtml"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/tips/Languages/csharpThreads.shtml")
+ (front-context-string . "<!--#include vir")
+ (rear-context-string)
+ (position . 1))
+("BC"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/History/WorldBC.shtml")
+ (front-context-string . "<!--#include vir")
+ (rear-context-string)
+ (position . 1))
+("csharp2"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/tips/Languages/Whats-New-In-CSharp-2.0.shtml")
+ (front-context-string . "<!--#include vir")
+ (rear-context-string)
+ (position . 1))
+("2"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/tips/Languages/Whats-New-In-CSharp-2.0.shtml")
+ (front-context-string . "<!--#include vir")
+ (rear-context-string)
+ (position . 1))
+("Whats-New-In-CSharp-2.0.shtml"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/tips/Languages/Whats-New-In-CSharp-2.0.shtml")
+ (front-context-string . "<!--#include vir")
+ (rear-context-string)
+ (position . 1))
+("1"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/tips/Languages/csharp.shtml")
+ (front-context-string . "\n<!--#include vi")
+ (rear-context-string . "ader.shtml\" -->\n")
+ (position . 770))
+("3"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/tips/Languages/Whats-New-In-CSharp-3.0.shtml")
+ (front-context-string . "\n<p align=\"right")
+ (rear-context-string . "MENT_URI}\" -->\n\n")
+ (position . 748))
+("4"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/tips/Languages/Whats-New-In-CSharp-4.0.shtml")
+ (front-context-string . "<h1>New Features")
+ (rear-context-string . "016</time>.</p>\n")
+ (position . 821))
+("javascript.shtml"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/tips/Languages/javascript.shtml")
+ (front-context-string . "./dirs.shtml\" --")
+ (rear-context-string . "clude virtual=\".")
+ (position . 420))
+("csharp.shtml"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/tips/Languages/csharp.shtml")
+ (front-context-string . "</li><li>Access ")
+ (rear-context-string . "}\n\n</pre></div>\n")
+ (position . 4783))
+("lisp"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/tips/Languages/Emacs.shtml")
+ (front-context-string . " b \"fowl\")) =&gt")
+ (rear-context-string . "q a \"fish\")(setq")
+ (position . 19926))
+("Emacs.shtml"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/tips/Languages/Emacs.shtml")
+ (front-context-string . " b \"fowl\")) =&gt")
+ (rear-context-string . "q a \"fish\")(setq")
+ (position . 19926))
+("index.shtml"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/index.shtml")
+ (front-context-string . "<p>Here are some")
+ (rear-context-string . "\">pdf</a>.\n</p>\n")
+ (position . 888))
+("RandomThoughts.shtml"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/History/RandomThoughts.shtml")
+ (front-context-string . "<!--#include vir")
+ (rear-context-string)
+ (position . 1))
+("REST.shtml"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/tips/web/REST.shtml")
+ (front-context-string . " </td><td> Missi")
+ (rear-context-string . "td> UNAUTHORIZED")
+ (position . 5262))
+("WorldBC.shtml"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/History/WorldBC.shtml")
+ (front-context-string . "<!--#include vir")
+ (rear-context-string)
+ (position . 1))
+("plog.html"
+ (filename . "~/DropBox/plog.html")
+ (front-context-string . "\n- Call Indira C")
+ (rear-context-string . " call uncle Buck")
+ (position . 428))
+("InterviewQuestions.shtml"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/tips/General/SoftwareDevelopment/InterviewQuestions.shtml")
+ (front-context-string . "<li>What LINQ op")
+ (rear-context-string . "threading.</li>\n")
+ (position . 6036))
+("totalHeader.shtml"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/templates/totalHeader.shtml")
+ (front-context-string . "w.fincher.org/st")
+ (rear-context-string . " href=\"http://ww")
+ (position . 3010))
+("Mayan"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/MayanPeriodic/index.php")
+ (front-context-string . "c Chart of the E")
+ (rear-context-string . "t=\"Mayan Periodi")
+ (position . 963))
+("log.html"
+ (filename . "~/log.html")
+ (front-context-string . "Taxes\nCall Uncle")
+ (rear-context-string . "ap\nSOLID\n\nLife:\n")
+ (position . 713))
+("patriots"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/patriots/index.shtml")
+ (front-context-string . "<?xml version=\"1")
+ (rear-context-string)
+ (position . 1))
+("history"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/History/WorldAD.shtml")
+ (front-context-string . ".</td></tr> \n\n\n<")
+ (rear-context-string . "ates is outlawed")
+ (position . 40537))
+("2013-ChristmasNewsletter.shtml"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/news/2013-ChristmasNewsletter.shtml")
+ (front-context-string . "http://www.finch")
+ (rear-context-string . " flexible.</p>\n\n")
+ (position . 4148))
+("todo.txt"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/todo.txt")
+ (front-context-string . "TTD:\nwebsite::\n-")
+ (rear-context-string)
+ (position . 1))
+("Misc.shtml"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/Misc/Misc.shtml")
+ (front-context-string . "ay use them as d")
+ (rear-context-string . "ey animals who m")
+ (position . 9424))
+("humor.shtml"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/Misc/humor.shtml")
+ (front-context-string . "<!--#include vir")
+ (rear-context-string)
+ (position . 1))
+("WorldAD.shtml"
+ (filename . "/ssh:mfincher@fincher.org:/home/mfincher/www/History/WorldAD.shtml")
+ (front-context-string . ".</td></tr> \n\n\n<")
+ (rear-context-string . "ates is outlawed")
+ (position . 40537))
+)
